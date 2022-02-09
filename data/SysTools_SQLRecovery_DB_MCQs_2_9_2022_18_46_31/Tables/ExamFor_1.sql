@@ -1,0 +1,3 @@
+SET IDENTITY_INSERT [dbo].[ExamFor] ON Insert into [dbo].[ExamFor] ([serialNo],[exam_Id],[studentRegNo],[writtenStatus]) SELECT 44,1,CONVERT(varchar(50),0x4142323231353031) COLLATE DATABASE_DEFAULT,1
+ SET IDENTITY_INSERT [dbo].[ExamFor] OFF ;SET IDENTITY_INSERT [dbo].[ExamFor] ON Insert into [dbo].[ExamFor] ([serialNo],[exam_Id],[studentRegNo],[writtenStatus]) SELECT 45,1,CONVERT(varchar(50),0x4158) COLLATE DATABASE_DEFAULT,1
+ SET IDENTITY_INSERT [dbo].[ExamFor] OFF ;
