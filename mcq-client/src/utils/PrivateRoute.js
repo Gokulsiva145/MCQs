@@ -1,8 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { getUserEmail } from "./Common";
+import { getUserTypeId } from "./Common";
 
-const PrivateRoute = ({ children }) => {
-  return getUserEmail() != null ? children : <Navigate to="/" />;
+export const PrivateRouteUser = ({ children }) => {
+  return getUserTypeId() !== 3 ? children : <Navigate to="/" />;
 };
 
-export default PrivateRoute;
+export const PrivateRouteStudent = ({ children }) => {
+  return getUserTypeId() === 3 ? children : <Navigate to="/" />;
+};

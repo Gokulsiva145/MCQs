@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTimer } from "react-timer-hook";
 import {
   Avatar,
-  AppBar,
   Box,
   Button,
   Container,
@@ -10,9 +9,6 @@ import {
   CssBaseline,
   FormControlLabel,
   FormGroup,
-  IconButton,
-  Menu,
-  MenuItem,
   Radio,
   RadioGroup,
   Stack,
@@ -96,30 +92,19 @@ HideOnScroll.propTypes = {
 
 const theme = createTheme();
 
-export default function ExamPaperPractice(props) {
+export default function ExamPaperPractice() {
   const location = useLocation();
-  //   const navigate = useNavigate();
   const [examDetails] = useState(location.state.examData);
-  const [auth] = useState(location.state.userData);
   const [result, setResult] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [questions, setQuestions] = useState([]);
 
   const inputSubmit = useRef(null);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const getQuestionsforExam = async (examId) => {
     const result = await fetch(`http://localhost:5000/questions/${examId}`);
     const record = await result.json();
     setQuestions(record);
   };
+  
   useEffect(() => {
     getQuestionsforExam(examDetails.examId);
   }, []);
@@ -213,51 +198,6 @@ export default function ExamPaperPractice(props) {
     <>
       {result === null ? (
         <ThemeProvider theme={theme}>
-          <HideOnScroll {...props}>
-            <AppBar color="" sx={{ p: 1 }}>
-              <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} />
-                {!!auth && (
-                  <div>
-                    <IconButton
-                      size="large"
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      onClick={handleMenu}
-                      color="inherit"
-                    >
-                      <Avatar
-                        alt={auth.name}
-                        src={auth.avatarUrl}
-                        sx={{ bgcolor: "secondary.main" }}
-                      />
-                    </IconButton>
-
-                    <Menu
-                      id="menu-appbar"
-                      anchorEl={anchorEl}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorEl)}
-                      onClose={handleClose}
-                    >
-                      <MenuItem onClick={handleClose}>{auth.email}</MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
-                    </Menu>
-                  </div>
-                )}
-              </Toolbar>
-            </AppBar>
-          </HideOnScroll>
-
           <React.Fragment>
             <CssBaseline />
             <Toolbar sx={{ mt: 15 }}>

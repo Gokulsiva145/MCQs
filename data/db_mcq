@@ -1,0 +1,486 @@
+USE [DB_MCQs]
+GO
+
+/****** Object: Table [dbo].[Courses] Script Date: 2/14/2022 11:33:32 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Courses] (
+    [courseCode] VARCHAR (20)  NOT NULL,
+    [groupName]  VARCHAR (100) NULL,
+    CONSTRAINT [PK_Courses] PRIMARY KEY CLUSTERED ([courseCode] ASC)
+);
+
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AA11', N'11 - Accountancy & Auditing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AA12', N'12 - Accountancy & Auditing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ABI11', N'11 - Agro Based Industries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ABI12', N'12 - Agro Based Industries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ACCAUD11', N'11 - Accountancy And Auditing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ACCAUD12', N'12 - Accountancy And Auditing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ADC', N'Advanced Diploma Courses')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AEROENG', N'Aeronautical Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AGM', N'Animation, Graphics and Multimedia')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AM11', N'11 - Auto Mechanic')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AM12', N'12 - Auto Mechanic')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AP11', N'11 - Agricultural Practicals')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AP12', N'12 - Agricultural Practicals')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AR', N'Automation and Robotics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AUTOENGIN', N'Automobile Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'AVIACOURSE', N'Aviation Courses')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAA11', N'11 - Banking Assistant With Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAA12', N'12 - Banking Assistant With Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BABSCLIBA', N'BA/B.Sc. Liberal Arts')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAC11', N'11 - Banking Assistant With Commerce')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAC12', N'12 - Banking Assistant With Commerce')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAH', N'BA in History')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BAHINECONO', N'BA (Hons.) in Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BARCH', N'B.Arch- Bachelor of Architecture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BBA', N'BBA- Bachelor of Business Administration')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BBALLBILC', N'Integrated Law Course- BA + LL.B')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BBALLBILP', N'Integarted Law Program- BBA LL.B')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BBS', N'BBS- Bachelor of Business Studies')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BC11', N'11 - Baking And Confectionery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BC12', N'12 - Baking And Confectionery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BCA', N'BCA- Bachelor of Computer Applications')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BCOM', N'B.Com- Bachelor of Commerce')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BCOMHON', N'B.Com (Hons.)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BCOMLLBILP', N'Integrated Law Program- B.Com LL.B.')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BDESIGN', N'Bachelor of Design (B. Design)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BDS', N'BDS- Bachelor of Dental Surgery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BEBTECH', N'BE/B.Tech- Bachelor of Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BEM', N'BEM- Bachelor of Event Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BFA', N'BFA- Bachelor of Fine Arts')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BFD', N'BFD- Bachelor of Fashion Designing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BFL', N'Bachelor in Foreign Language')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BIOTEN', N'Biotechnology Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BM11', N'11 - Building Maintenance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BM12', N'12 - Building Maintenance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BMS', N'BMS- Bachelor of Management Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BMSI11', N'11 - Business Management Small Industries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BMSI12', N'12 - Business Management Small Industries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BP', N'BPharma- Bachelor of Pharmacy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BPA', N'Bachelor of Performing Arts')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BPT', N'BPT- Bachelor of Physiotherapy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCAPPGEO', N'B.Sc- Applied Geology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCCHEMS', N'B.Sc. Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCHHA', N'B.Sc.- Hospitality and Hotel Administration')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCINTDES', N'B.Sc- Interior Design')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCIT', N'B.Sc.- Information Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCMATHS', N'B.Sc. Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCND', N'B.Sc. – Nutrition & Dietetics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCNUR', N'B.Sc- Nursing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSCPHYS', N'B.Sc.- Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BSW', N'BSW- Bachelor of Social Work')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'BTTM', N'BTTM- Bachelor of Travel and Tourism Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CA', N'CA- Chartered Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CB11', N'11 - Catering With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CB12', N'12 - Catering With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNB11', N'11 - Child Care And Nutrition With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNB12', N'12 - Child Care And Nutrition With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNC11', N'11 - Child Care And Nutrition With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNC12', N'12 - Child Care And Nutrition With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNHS11', N'11 - Child Care And Nutrition With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CCNHS12', N'12 - Child Care And Nutrition With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CERAENG', N'Ceramic Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CERTCOUR', N'Certificate Courses')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CHEMENG', N'Chemical Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CIVIENG', N'Civil Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CM11', N'11 - Catering With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CM12', N'12 - Catering With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'COMC11', N'11 - Co-Operative Management With Commerce')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'COMC12', N'12 - Co-Operative Management With Commerce')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'COMG11', N'11 - Co-Operative Management With Geography')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'COMG12', N'12 - Co-Operative Management With Geography')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'COMSEC', N'CS - Company Secretary')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CONSENG', N'Construction Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CP11', N'11 - Crop Production')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CP12', N'12 - Crop Production')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CPTWC11', N'11 - Composing & Printing Technology With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CPTWC12', N'12 - Composing & Printing Technology With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CSE', N'Computer Science and Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CSECA11', N'11 - Comp.Sci | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CSECA12', N'12 - Comp.Sci | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CSGHE11', N'11 - Comp.Sci | Geography | History | Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'CSGHE12', N'12 - Comp.Sci | Geography | History | Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'D11', N'11 - Dairying')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'D12', N'12 - Dairying')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DC11', N'11 - Draughtsman Civil')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DC12', N'12 - Draughtsman Civil')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDMC11', N'11 - Dress Designing And Making With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDMC12', N'12 - Dress Designing And Making With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDMHS11', N'11 - Dress Designing And Making With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDMHS12', N'12 - Dress Designing And Making With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDPC11', N'11 - Designing Dyeing And Printing With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDPC12', N'12 - Designing Dyeing And Printing With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDPHS11', N'11 - Designing Dyeing And Printing With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DDPHS12', N'12 - Designing Dyeing And Printing With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DEPE11', N'11 - Domestic Electronic And Projection Equipment')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DEPE12', N'12 - Domestic Electronic And Projection Equipment')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DHC11', N'11 - Dental Hygienists With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DHC12', N'12 - Dental Hygienists With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DHP11', N'11 - Dental Hygienists With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DHP12', N'12 - Dental Hygienists With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DIPLOMA', N'Diploma Courses')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DM11', N'11 - Dental Mechanic')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DM12', N'12 - Dental Mechanic')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DNFP11', N'11 - Dietetics Nutrition And Food Preparation')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DNFP12', N'12 - Dietetics Nutrition And Food Preparation')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DRAFTCIVL11', N'11 - Draftsman(Civil)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DRAFTCIVL12', N'12 - Draftsman(Civil)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DRAFTMECH11', N'11 - Draftsman(Mechanical)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'DRAFTMECH12', N'12 - Draftsman(Mechanical)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ECABM11', N'11 - Economics | Commerce | Accountancy | Busi.Maths')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ECABM12', N'12 - Economics | Commerce | Accountancy | Busi.Maths')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ECAEIC11', N'11 - Economics | Commerce | Accountancy | E.&I Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ECAEIC12', N'12 - Economics | Commerce | Accountancy | E.&I Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ECE', N'Electronics and Communication Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EDA11', N'11 - Electrical Domestic Appliances')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EDA12', N'12 - Electrical Domestic Appliances')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EE11', N'11 - Electronic Equipments')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EE12', N'12 - Electronic Equipments')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EEE', N'Electrical and Electronics Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMA11', N'11 - Electrical Machines And Appliances')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMA12', N'12 - Electrical Machines And Appliances')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMRWM11', N'11 - Electrical Motor Re-Winding With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMRWM12', N'12 - Electrical Motor Re-Winding With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMRWP11', N'11 - Electrical Motor Re-Winding With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'EMRWP12', N'12 - Electrical Motor Re-Winding With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FISH11', N'11 - Fisheries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FISH12', N'12 - Fisheries')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FITTING11', N'11 - Fitting')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FITTING12', N'12 - Fitting')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMCC11', N'11 - Food Management And Child Care')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMCC12', N'12 - Food Management And Child Care')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMP11', N'11 - Floriculture And Medicinal Plants')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMP12', N'12 - Floriculture And Medicinal Plants')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMPHT11', N'11 - Farm Mechanics And Post Harvest Tech')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FMPHT12', N'12 - Farm Mechanics And Post Harvest Tech')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FOUNDRY11', N'11 - Foundry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FOUNDRY12', N'12 - Foundry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FP11', N'11 - Food Preservation')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FP12', N'12 - Food Preservation')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FPB11', N'11 - Food Preservation With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FPB12', N'12 - Food Preservation With Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FPZ11', N'11 - Food Preservation With Zoology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FPZ12', N'12 - Food Preservation With Zoology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FTECH11', N'11 - Foundry Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'FTECH12', N'12 - Foundry Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN1', N'1 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN10', N'10 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN2', N'2 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN3', N'3 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN4', N'4 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN5', N'5 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN6', N'6 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN7', N'7 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN8', N'8 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GEN9', N'9 - General')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GENMACH11', N'11 - Genereal Machinist')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GENMACH12', N'12 - Genereal Machinist')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEAL11', N'11 - Geography | History | Economics | Adv.Language')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEAL12', N'12 - Geography | History | Economics | Adv.Language')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEEIC11', N'11 - Geography | History | Economics | E.&I Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEEIC12', N'12 - Geography | History | Economics | E.&I Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEPS11', N'11 - Geography | History | Economics | Pol.Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GHEPS12', N'12 - Geography | History | Economics | Pol.Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GM11', N'11 - General Machinist')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'GM12', N'12 - General Machinist')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HECA11', N'11 - History | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HECA12', N'12 - History | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HHKC11', N'11 - Hospital House-Keeping With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HHKC12', N'12 - Hospital House-Keeping With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HHKP11', N'11 - Hospital House-Keeping With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HHKP12', N'12 - Hospital House-Keeping With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HK11', N'11 - House-Keeper')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'HK12', N'12 - House-Keeper')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'INS11', N'11 - Insurance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'INS12', N'12 - Insurance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'INSTENG', N'Instrumentation Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LP11', N'11 - Lithographic Printing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LP12', N'12 - Lithographic Printing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LPP11', N'11 - Letter Press Printing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LPP12', N'12 - Letter Press Printing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LT11', N'11 - Leather Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'LT12', N'12 - Leather Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MC11', N'11 - Music With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MC12', N'12 - Music With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MHS11', N'11 - Music With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MHS12', N'12 - Music With Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MIC11', N'11 - Music With Indian Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MIC12', N'12 - Music With Indian Culture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MLAC11', N'11 - Medical Laboratory Assistant With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MLAC12', N'12 - Medical Laboratory Assistant With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MLAP11', N'11 - Medical Laboratory Assistant With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MLAP12', N'12 - Medical Laboratory Assistant With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MM11', N'11 - Material Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MM12', N'12 - Material Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MS11', N'11 - Marketing And Salesmanship')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MS12', N'12 - Marketing And Salesmanship')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSEMIG11', N'11 - Maint.&Servicing Elecl.Machines.(Incl.Generators)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSEMIG12', N'12 - Maint.&Servicing Elecl.Machines.(Incl.Generators)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSTMM11', N'11 - Maint.&Servicing Textile Machinery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSTMM12', N'12 - Maint.&Servicing Textile Machinery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSTMP11', N'11 - Maintenance And Servicing Textile Machinery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'MSTMP12', N'12 - Maintenance And Servicing Textile Machinery')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'N11', N'11 - Nursing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'N12', N'12 - Nursing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NCC11', N'11 - Nursing Course With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NCC12', N'12 - Nursing Course With Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NCP11', N'11 - Nursing Course With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NCP12', N'12 - Nursing Course With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NMO11', N'11 - Nutritious Meal Organiser')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'NMO12', N'12 - Nutritious Meal Organiser')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'OSS11', N'11 - Office Secretary Ship')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'OSS12', N'12 - Office Secretary Ship')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'OT11', N'11 - Opthalmic Technician')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'OT12', N'12 - Opthalmic Technician')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'P11', N'11 - Poultry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'P12', N'12 - Poultry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBBC11', N'11 - Physics | Chemistry | Biology | Bio-Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBBC12', N'12 - Physics | Chemistry | Biology | Bio-Chemistry')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBCM11', N'11 - Physics | Chemistry | Bio-Chemistry | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBCM12', N'12 - Physics | Chemistry | Bio-Chemistry | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBCS11', N'11 - Physics | Chemistry | Biology | Comp.Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBCS12', N'12 - Physics | Chemistry | Biology | Comp.Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBEC11', N'11 - Physics | Chemistry | Biology | Eng.For Comn')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBEC12', N'12 - Physics | Chemistry | Biology | Eng.For Comn')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBHS11', N'11 - Physics | Chemistry | Biology | Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBHS12', N'12 - Physics | Chemistry | Biology | Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBM11', N'11 - Physics | Chemistry | Biology | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBM12', N'12 - Physics | Chemistry | Biology | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBMB11', N'11 - Physics | Chemistry | Biology | Micro-Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBMB12', N'12 - Physics | Chemistry | Biology | Micro-Biology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBN11', N'11 - Physics | Chemistry | Biology | Nursing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBN12', N'12 - Physics | Chemistry | Biology | Nursing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBND11', N'11 - Physics | Chemistry | Biology | Nutri.&Dietics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBND12', N'12 - Physics | Chemistry | Biology | Nutri.&Dietics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBS11', N'11 - Physics | Chemistry | Biology | Siddha')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBS12', N'12 - Physics | Chemistry | Biology | Siddha')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBZ11', N'11 - Physics | Chemistry | Botany | Zoology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCBZ12', N'12 - Physics | Chemistry | Botany | Zoology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCCSM11', N'11 - Physics | Chemistry | Comp.Science | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCCSM12', N'12 - Physics | Chemistry | Comp.Science | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCMHS11', N'11 - Physics | Chemistry | Mathematics | Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCMHS12', N'12 - Physics | Chemistry | Mathematics | Home Science')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCSM11', N'11 - Physics | Chemistry | Statistics | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PCSM12', N'12 - Physics | Chemistry | Statistics | Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PETRENG', N'Petroleum Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PHOTO11', N'11 - Photography')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PHOTO12', N'12 - Photography')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PHYSIO11', N'11 - Physiotherapy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PHYSIO12', N'12 - Physiotherapy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'POWENG', N'Power Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PP11', N'11 - Plant Protection')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'PP12', N'12 - Plant Protection')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RACE11', N'11 - Refrigeration And Air Conditioning Equipment')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RACE12', N'12 - Refrigeration And Air Conditioning Equipment')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RMOTW11', N'11 - Repairs And Maintenance Of Two Wheelers')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RMOTW12', N'12 - Repairs And Maintenance Of Two Wheelers')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'ROBOENG', N'Robotics Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RTMRM11', N'11 - Radio & TV Maintenance & Repairs With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RTMRM12', N'12 - Radio & TV Maintenance & Repairs With Mathematics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RTMRP11', N'11 - Radio & Tv Maintenance & Repairs With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'RTMRP12', N'12 - Radio & Tv Maintenance & Repairs With Physics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SA11', N'11 - Sericulture And Apiculture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SA12', N'12 - Sericulture And Apiculture')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SCRCT11', N'11 - Soil Conservation And Rural Constn Tech.')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SCRCT12', N'12 - Soil Conservation And Rural Constn Tech.')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SECA11', N'11 - Statistics | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SECA12', N'12 - Statistics | Economics | Commerce | Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SFM11', N'11 - Small Farm Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SFM12', N'12 - Small Farm Management')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SGHE11', N'11 - Statistics | Geography | History | Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SGHE12', N'12 - Statistics | Geography | History | Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SMA', N'Smart Manufacturing & Automation')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SPC11', N'11 - Spices And Plantation Crops')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'SPC12', N'12 - Spices And Plantation Crops')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'STRENG', N'Structural Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TACSGA11', N'11 - Techl.Asst.Course-Sports&Games With Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TACSGA12', N'12 - Techl.Asst.Course-Sports&Games With Accountancy')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TACSGE11', N'11 - Techl.Asst.Course-Sports&Games With Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TACSGE12', N'12 - Techl.Asst.Course-Sports&Games With Economics')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TD11', N'11 - Textile And Designs')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TD12', N'12 - Textile And Designs')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TDD11', N'11 - Textiles And Dress Designing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TDD12', N'12 - Textiles And Dress Designing')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TDHS11', N'11 - Textile And Designs (Home Science)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TDHS12', N'12 - Textile And Designs (Home Science)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TEXTLENG', N'Textile Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TRANSENG', N'Transportation Engineering')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TRM11', N'11 - Tractor Repairs And Maintenance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TRM12', N'12 - Tractor Repairs And Maintenance')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TT11', N'11 - Textile Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TT12', N'12 - Textile Technology')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TTC11', N'11 - Textile Technology (Chemistry)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TTC12', N'12 - Textile Technology (Chemistry)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TTM11', N'11 - Textile Technology (Mathematics)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'TTM12', N'12 - Textile Technology (Mathematics)')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'VF11', N'11 - Vegetables And Fruits')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'VF12', N'12 - Vegetables And Fruits')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'WELD11', N'11 - Welding')
+INSERT INTO [dbo].[Courses] ([courseCode], [groupName]) VALUES (N'WELD12', N'12 - Welding')
+
+
+
+CREATE TABLE [dbo].[ExamFor] (
+    [serialNo]      INT          IDENTITY (1, 1) NOT NULL,
+    [exam_Id]       INT          NULL,
+    [studentRegNo]  VARCHAR (50) NULL,
+    [writtenStatus] INT          NULL,
+    CONSTRAINT [PK_ExamFor] PRIMARY KEY CLUSTERED ([serialNo] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[ExamQuestions] (
+    [Id]               INT            NOT NULL,
+    [exam_Id]          INT            NULL,
+    [questionNo]       INT            NULL,
+    [question]         NVARCHAR (MAX) NULL,
+    [optionA]          NVARCHAR (50)  NULL,
+    [optionB]          NVARCHAR (50)  NULL,
+    [optionC]          NVARCHAR (50)  NULL,
+    [optionD]          NVARCHAR (50)  NULL,
+    [correctAnswer]    NVARCHAR (50)  NULL,
+    [mark]             FLOAT (53)     NULL,
+    [negativeMark]     FLOAT (53)     NULL,
+    [question_Type_Id] INT            NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+INSERT INTO [dbo].[ExamQuestions] ([Id], [exam_Id], [questionNo], [question], [optionA], [optionB], [optionC], [optionD], [correctAnswer], [mark], [negativeMark], [question_Type_Id]) VALUES (1, 1, 1, N'who is the richest person in the world?', N'jeff', N'arnold', N'elan', N'mukesh', N'elan', 2, 1.5, 1)
+INSERT INTO [dbo].[ExamQuestions] ([Id], [exam_Id], [questionNo], [question], [optionA], [optionB], [optionC], [optionD], [correctAnswer], [mark], [negativeMark], [question_Type_Id]) VALUES (2, 1, 2, N'Which animals are bred by man', N'cock', N'dove', N'dog', N'dinosur', N'cock[|]dog[|]dove', 2, 1.5, 2)
+INSERT INTO [dbo].[ExamQuestions] ([Id], [exam_Id], [questionNo], [question], [optionA], [optionB], [optionC], [optionD], [correctAnswer], [mark], [negativeMark], [question_Type_Id]) VALUES (3, 2, 1, N'pr', N'a', N'b', N'c', N'd', N'a', 1, 0.5, 1)
+INSERT INTO [dbo].[ExamQuestions] ([Id], [exam_Id], [questionNo], [question], [optionA], [optionB], [optionC], [optionD], [correctAnswer], [mark], [negativeMark], [question_Type_Id]) VALUES (4, 2, 2, N'pr', N'a', N'b', N'c', N'd', N'a', 1, 0.5, 1)
+
+
+CREATE TABLE [dbo].[Institutions] (
+    [institutionId]   INT           NOT NULL,
+    [institutionName] VARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([institutionId] ASC)
+);
+
+
+
+
+INSERT INTO [dbo].[Institutions] ([institutionId], [institutionName]) VALUES (1, N'ABC College')
+
+
+CREATE TABLE [dbo].[QuestionTypes] (
+    [questionTypeId] INT          NOT NULL,
+    [questionType]   VARCHAR (20) NULL,
+    PRIMARY KEY CLUSTERED ([questionTypeId] ASC)
+);
+
+
+
+
+INSERT INTO [dbo].[QuestionTypes] ([questionTypeId], [questionType]) VALUES (1, N'RADIO')
+INSERT INTO [dbo].[QuestionTypes] ([questionTypeId], [questionType]) VALUES (2, N'CHECK')
+INSERT INTO [dbo].[QuestionTypes] ([questionTypeId], [questionType]) VALUES (3, N'TEXT')
+
+
+CREATE TABLE [dbo].[Results] (
+    [Id]            INT          IDENTITY (1, 1) NOT NULL,
+    [exam_Id]       INT          NULL,
+    [student_RegNo] VARCHAR (50) NULL,
+    [question_No]   INT          NULL,
+    [writtenAnswer] VARCHAR (50) NULL,
+    CONSTRAINT [PK_Results] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[Schedules] (
+    [examId]       INT           NOT NULL,
+    [examCode]     VARCHAR (50)  NOT NULL,
+    [subject_Code] VARCHAR (100) NULL,
+    [examDate]     DATE          NULL,
+    [startsFrom]   TIME (7)      NULL,
+    [endTo]        TIME (7)      NULL,
+    [passMark]     FLOAT (53)    NULL,
+    [examType]     INT           NULL,
+    [createdBy]    VARCHAR (50)  NULL,
+    PRIMARY KEY CLUSTERED ([examId] ASC),
+    UNIQUE NONCLUSTERED ([examCode] ASC)
+);
+
+INSERT INTO [dbo].[Schedules] ([examId], [examCode], [subject_Code], [examDate], [startsFrom], [endTo], [passMark], [examType], [createdBy]) VALUES (1, N'STAT12_020222_11-17_1643959706488', N'STAT12', N'2022-02-02', N'06:25:00', N'12:04:00', 4, 0, N'gokulsiva145@gmail.com')
+INSERT INTO [dbo].[Schedules] ([examId], [examCode], [subject_Code], [examDate], [startsFrom], [endTo], [passMark], [examType], [createdBy]) VALUES (2, N'BIO12_040222_10-11_1644238722000', N'BIO12', N'2022-02-04', N'04:30:00', N'05:55:00', 1, 1, N'gokulsiva145@gmail.com')
+
+
+CREATE TABLE [dbo].[Status] (
+    [statusCode] INT          NOT NULL,
+    [status]     VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([statusCode] ASC)
+);
+
+
+INSERT INTO [dbo].[Status] ([statusCode], [status]) VALUES (0, N'inactive')
+INSERT INTO [dbo].[Status] ([statusCode], [status]) VALUES (1, N'active')
+
+
+CREATE TABLE [dbo].[Subjects] (
+    [subjectCode] VARCHAR (50) NOT NULL,
+    [subjectName] VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([subjectCode] ASC)
+);
+
+
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'BIO11', N'BIOLOGY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'BIO12', N'BIOLOGY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'BIOCHEM11', N'BIO-CHEMISTRY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'BIOCHEM12', N'BIO-CHEMISTRY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'CHEM11', N'CHEMISTRY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'CHEM12', N'CHEMISTRY')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'CS11', N'COMPUTER SCIENCE')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'CS12', N'COMPUTER SCIENCE')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'HS11', N'HOME SCIENCE')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'HS12', N'HOME SCIENCE')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'MAT11', N'MATHEMATICS')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'MAT12', N'MATHEMATICS')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'PHY11', N'PHYSICS')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'PHY12', N'PHYSICS')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'STAT11', N'STATISTICS')
+INSERT INTO [dbo].[Subjects] ([subjectCode], [subjectName]) VALUES (N'STAT12', N'STATISTICS')
+
+CREATE TABLE [dbo].[Users] (
+    [userId]         INT           NOT NULL,
+    [registrationNo] VARCHAR (50)  NULL,
+    [firstName]      VARCHAR (50)  NULL,
+    [lastName]       VARCHAR (50)  NULL,
+    [birthDate]      DATE          NULL,
+    [course_Code]    VARCHAR (50)  NULL,
+    [institution_Id] INT           NULL,
+    [email]          VARCHAR (50)  NULL,
+    [passCode]       VARCHAR (50)  NULL,
+    [user_Type_Id]   INT           NULL,
+    [avatarUrl]      VARCHAR (MAX) NULL,
+    [status_Code]    INT           NULL,
+    PRIMARY KEY CLUSTERED ([userId] ASC),
+    UNIQUE NONCLUSTERED ([email] ASC)
+);
+
+
+INSERT INTO [dbo].[Users] ([userId], [registrationNo], [firstName], [lastName], [birthDate], [course_Code], [institution_Id], [email], [passCode], [user_Type_Id], [avatarUrl], [status_Code]) VALUES (1, NULL, N'Gokul', N'Paramasivan', NULL, NULL, NULL, N'gokulsiva145@gmail.com', N'123', 1, NULL, 1)
+INSERT INTO [dbo].[Users] ([userId], [registrationNo], [firstName], [lastName], [birthDate], [course_Code], [institution_Id], [email], [passCode], [user_Type_Id], [avatarUrl], [status_Code]) VALUES (2, N'R1', N'rohith', NULL, N'2007-11-23', N'AA11', 1, N'rohith@gmail.com', N'23/11/2007', 3, N'http://localhost:5000/images/students/R1.jpg', 1)
+INSERT INTO [dbo].[Users] ([userId], [registrationNo], [firstName], [lastName], [birthDate], [course_Code], [institution_Id], [email], [passCode], [user_Type_Id], [avatarUrl], [status_Code]) VALUES (3, N'R2', N'Niva', NULL, N'2001-12-02', N'ACCAUD11', 1, N'niva@gmail.com', N'03/12/2001', 3, NULL, 1)
+
+
+CREATE TABLE [dbo].[UserTypes] (
+    [userTypeId] INT          NOT NULL,
+    [userType]   VARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([userTypeId] ASC)
+);
+
+
+INSERT INTO [dbo].[UserTypes] ([userTypeId], [userType]) VALUES (1, N'Administrator')
+INSERT INTO [dbo].[UserTypes] ([userTypeId], [userType]) VALUES (2, N'Staff')
+INSERT INTO [dbo].[UserTypes] ([userTypeId], [userType]) VALUES (3, N'Student')
+
+

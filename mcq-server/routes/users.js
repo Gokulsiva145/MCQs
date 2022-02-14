@@ -7,7 +7,7 @@ var commonFn = require("./common");
 
 router.get("/all", function (req, res, next) {
     var request = new sql.Request();
-    request.query("SELECT userId, firstName, lastName, email, passCode, user_Type_Id, userType, status_Code, status FROM USERS "+
+    request.query("SELECT userId, registrationNo, firstName, lastName, birthDate, course_Code, email, user_Type_Id, userType, avatarUrl, status_Code, status FROM USERS "+
         "LEFT JOIN STATUS ON status_Code = statusCode LEFT JOIN USERTYPES ON user_Type_Id = userTypeId", function (err, data) {
         if (err) {
             return console.error(err);
@@ -35,7 +35,7 @@ router.get("/filtered", function (req, res, next) {
 router.post("/userAuthentication", function (req, res, next) {
     var request = new sql.Request();
     request.query(
-        "SELECT userId, firstName, lastName, email, user_Type_Id, userType, status_Code FROM USERS " +
+        "SELECT userId, registrationNo, firstName, lastName, birthDate, course_Code, email, user_Type_Id, userType, avatarUrl, status_Code FROM USERS " +
         "LEFT JOIN USERTYPES ON user_Type_Id = userTypeId WHERE email='" +
         req.body.email +
         "' AND passCode='" +

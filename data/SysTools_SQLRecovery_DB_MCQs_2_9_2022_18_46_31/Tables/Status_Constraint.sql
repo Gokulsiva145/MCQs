@@ -1,2 +1,0 @@
-ALTER TABLE [dbo].[Status] ADD CONSTRAINT [
-go

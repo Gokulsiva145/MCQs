@@ -1,5 +1,6 @@
-import { sentenceCase } from "change-case";
 import { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { sentenceCase } from "change-case";
 import moment from "moment";
 // material
 import {
@@ -24,7 +25,6 @@ import {
   ExamResultListToolbar,
 } from "../masters/examResult";
 import { getComparator, applySortFilter } from "../utils/tableFunctions";
-import { Link as RouterLink, useLocation } from "react-router-dom";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -59,9 +59,8 @@ function getDuration(d1, d2) {
 }
 
 export default function ExamPracticeList() {
-  const location = useLocation();
   const [SCHEDULELIST, setSCHEDULELIST] = useState([]);
-  const [currentUser] = useState(location.state.data);
+  const [currentUser] = useState(sessionStorage.getItem("studentData"));
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("registrationNo");

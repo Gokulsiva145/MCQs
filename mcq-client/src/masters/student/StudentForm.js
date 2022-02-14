@@ -20,6 +20,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+// import { Icon } from "@iconify/react";
+// import plusFill from "@iconify/icons-eva/plus-fill";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -28,6 +30,7 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import FormDialog from "../institution/Modal";
 
 const RegistrationSchema = Yup.object().shape({
   email: Yup.string()
@@ -44,7 +47,10 @@ const RegistrationSchema = Yup.object().shape({
   course: Yup.object({
     courseCode: Yup.string().required("Course is required"),
   }),
-  institution: Yup.string().required("Institution is required"),
+  institution: Yup.object({
+    institutionId: Yup.number().required("Institution is required"),
+  }),
+  // institutionId: Yup.number().required("Institution is required"),
 });
 
 const theme = createTheme();
@@ -53,9 +59,13 @@ export default function StudentForm() {
   const location = useLocation();
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
+  const [institutions, setInstitutions] = useState([]);
   const [image, _setImage] = useState(null);
   const [imageURL, _setImageURL] = useState(null);
   const [currentForm, setCurrentForm] = useState("add");
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   const initValues =
     location.state == null
@@ -68,22 +78,30 @@ export default function StudentForm() {
             courseCode: "",
             groupName: "select course",
           },
-          institution: "",
+          institution: {
+            institutionId: "",
+            institutionName: "Select Institution",
+          },
           avatarUrl: "",
           statusCode: 0,
+          userTypeId: 3,
         }
       : {
           registrationNo: location.state.data.registrationNo,
-          name: location.state.data.name,
+          name: location.state.data.firstName,
           birthDate: location.state.data.birthDate,
           email: location.state.data.email,
           course: {
             courseCode: location.state.data.courseCode,
             groupName: location.state.data.groupName,
           },
-          institution: location.state.data.institution,
+          institution: {
+            institutionId: location.state.data.institution_Id,
+            institutionName: location.state.data.institutionName,
+          },
           avatarUrl: location.state.data.avatarUrl,
           statusCode: location.state.data.statusCode,
+          userTypeId: location.state.data.user_Type_Id,
         };
 
   const getCourses = async () => {
@@ -96,8 +114,20 @@ export default function StudentForm() {
     setCourses(record);
   };
 
+  const getInstitutions = async () => {
+    const result = await fetch("http://localhost:5000/institutions/all");
+    const record = await result.json();
+    record.unshift({
+      institutionId: "",
+      institutionName: "select Institution",
+    });
+    setInstitutions(record);
+    setIsDialogOpen(false);
+  };
+
   useEffect(() => {
     getCourses();
+    getInstitutions();
     if (location.state === null) {
       setCurrentForm("add");
     } else {
@@ -124,6 +154,15 @@ export default function StudentForm() {
     }
   };
 
+  const handleAddInstitution = async () => {
+    setModalData(null);
+    setIsDialogOpen(true);
+  };
+
+  const handleOpenModal = (value) => {
+    setIsDialogOpen(value);
+  };
+
   const handleSubmit = async (values, { setStatus, setSubmitting }) => {
     setStatus();
     let avatarUrl = null;
@@ -135,64 +174,60 @@ export default function StudentForm() {
 
       data.append("file", image, newFileName);
 
-      //   console.log(data.get("file"));
       await fetch("http://localhost:5000/students/uploadFiles", {
         method: "Post",
         body: data,
       })
         .then((response) => response.json())
-        .then((responseData) => {
-          //   console.log(responseData);
+        .then(() => {
           avatarUrl = `http://localhost:5000/images/students/${newFileName}`;
         });
     }
-
-    setTimeout(() => {
-      console.log(values);
-      let postURL = "";
-      if (currentForm === "add") {
-        postURL = "http://localhost:5000/students/add";
-      } else {
-        postURL = "http://localhost:5000/students/edit";
-      }
-      fetch(postURL, {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          regNo: values.registrationNo,
-          name: values.name,
-          dob: values.birthDate,
-          email: values.email,
-          course: values.course.courseCode,
-          institution: values.institution,
-          avatarUrl: avatarUrl === null ? values.avatarUrl : avatarUrl,
-          statusCode: values.statusCode,
-        }),
+    let postURL = "";
+    if (currentForm === "add") {
+      postURL = "http://localhost:5000/students/add";
+    } else {
+      postURL = "http://localhost:5000/students/edit";
+    }
+    await fetch(postURL, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        regNo: values.registrationNo,
+        name: values.name,
+        dob: values.birthDate,
+        email: values.email,
+        passCode: moment(values.birthDate).format("DD/MM/YYYY"),
+        course: values.course.courseCode,
+        institutionId: values.institution.institutionId,
+        userTypeId: values.userTypeId,
+        avatarUrl: avatarUrl === null ? values.avatarUrl : avatarUrl,
+        statusCode: values.statusCode,
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result[0] === 1) {
+          Swal.fire({
+            toast: true,
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1000,
+          }).then((res) => {
+            if (res) {
+              navigate(-1);
+            }
+          });
+        }
       })
-        .then((response) => response.json())
-        .then((result) => {
-          if (result[0] === 1) {
-            Swal.fire({
-              toast: true,
-              icon: "success",
-              title: "Your work has been saved",
-              showConfirmButton: false,
-              timer: 1000,
-            }).then((res) => {
-              if (res) {
-                navigate(-1);
-              }
-            });
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          // throw err;
-        });
-    }, 500);
+      .catch((err) => {
+        console.log(err);
+        // throw err;
+      });
   };
 
   return (
@@ -222,7 +257,14 @@ export default function StudentForm() {
                 </Typography>
               }
               action={
-                <Button type="button"  variant="outlined" sx={{mr:1}} onClick={()=>navigate(-1)}>Back</Button>
+                <Button
+                  type="button"
+                  variant="outlined"
+                  sx={{ mr: 1 }}
+                  onClick={() => navigate(-1)}
+                >
+                  Back
+                </Button>
               }
             />
             <CardContent>
@@ -265,11 +307,8 @@ export default function StudentForm() {
                             component="span"
                             sx={{ mt: 2 }}
                           >
-                            {/* <PhotoCamera /> */}
                             <Avatar
                               sx={{ height: "200px", width: "200px" }}
-                              //   src={URL.createObjectURL(values.avatarUrl)}
-                              //   src={values.avatarUrl}
                               src={imageURL || values.avatarUrl}
                             />
                           </IconButton>
@@ -385,73 +424,134 @@ export default function StudentForm() {
                           }}
                           fullWidth
                         />
-                        <TextField
-                          name="institution"
-                          label="Institution"
-                          value={values.institution}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.institution && touched.institution}
-                          helperText={errors.institution}
-                          margin="normal"
-                          fullWidth
-                        />
-                        <TextField
-                          name="email"
-                          label="Email Address"
-                          value={values.email}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.email && touched.email}
-                          helperText={errors.email}
-                          margin="normal"
-                          fullWidth
-                        />
-                        <FormControl
-                          component="fieldset"
-                          style={{ textAlign: "left", display: "block" }}
-                        >
-                          <FormLabel component="legend">Level</FormLabel>
-                          <RadioGroup
-                            row
-                            aria-label="level"
-                            name="row-radio-buttons-group"
+                        <Grid item xs={12}>
+                          <Autocomplete
+                            name="institution.institutionId"
+                            options={institutions}
+                            getOptionLabel={(option) => {
+                              if (option.hasOwnProperty("institutionName")) {
+                                return option.institutionName;
+                              }
+                              return option;
+                            }}
+                            renderOption={(props, option) => (
+                              <Box
+                                component="li"
+                                key={option.institutionId}
+                                {...props}
+                              >
+                                {option.institutionName}
+                              </Box>
+                            )}
+                            isOptionEqualToValue={(option, value) =>
+                              option.institutionId ===
+                              values.institution.institutionId
+                            }
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                name="institution.institutionId"
+                                label="Institution"
+                                margin="normal"
+                                error={Boolean(
+                                  errors.institution && touched.institution
+                                )}
+                                helperText={
+                                  errors.institution && touched.institution
+                                    ? errors.institution.institutionId
+                                    : false
+                                }
+                                // sx={{ mb: 0 }}
+                              />
+                            )}
+                            noOptionsText={
+                              <Button onClick={() => handleAddInstitution()}>
+                                Click to Add institution
+                              </Button>
+                            }
+                            value={values.institution}
+                            onChange={(e, value) => {
+                              console.log(value);
+                              setFieldValue("institution", {
+                                institutionId: value.institutionId,
+                                institutionName: value.institutionName,
+                              });
+                            }}
+                            onBlur={() => {
+                              if (values.course === null) {
+                                setFieldValue(
+                                  "institution",
+                                  initValues.institution
+                                );
+                              }
+                            }}
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            name="email"
+                            label="Email Address"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            error={errors.email && touched.email}
+                            helperText={errors.email}
+                            margin="normal"
+                            fullWidth
+                          />
+                          <FormControl
+                            component="fieldset"
+                            style={{ textAlign: "left", display: "block" }}
                           >
-                            <FormControlLabel
-                              value={1}
-                              control={
-                                <Radio
-                                  onChange={(e) => {
-                                    setFieldValue("statusCode", e.target.value);
-                                  }}
-                                  checked={parseInt(values.statusCode) === 1}
-                                />
-                              }
-                              label="Active"
-                            />
-                            <FormControlLabel
-                              value={0}
-                              control={
-                                <Radio
-                                  onChange={(e) => {
-                                    setFieldValue("statusCode", e.target.value);
-                                  }}
-                                  checked={parseInt(values.statusCode) === 0}
-                                />
-                              }
-                              label="Inctive"
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                        <Button
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          sx={{ mt: 3, mb: 2 }}
-                          disabled={isSubmitting}
-                        >
-                          {sentenceCase(currentForm)}
-                        </Button>
+                            <FormLabel component="legend">Level</FormLabel>
+                            <RadioGroup
+                              row
+                              aria-label="level"
+                              name="row-radio-buttons-group"
+                            >
+                              <FormControlLabel
+                                value={1}
+                                control={
+                                  <Radio
+                                    onChange={(e) => {
+                                      setFieldValue(
+                                        "statusCode",
+                                        e.target.value
+                                      );
+                                    }}
+                                    checked={parseInt(values.statusCode) === 1}
+                                  />
+                                }
+                                label="Active"
+                              />
+                              <FormControlLabel
+                                value={0}
+                                control={
+                                  <Radio
+                                    onChange={(e) => {
+                                      setFieldValue(
+                                        "statusCode",
+                                        e.target.value
+                                      );
+                                    }}
+                                    checked={parseInt(values.statusCode) === 0}
+                                  />
+                                }
+                                label="Inctive"
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                          <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                            disabled={isSubmitting}
+                          >
+                            {sentenceCase(currentForm)}
+                          </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                     <Grid container />
@@ -461,6 +561,12 @@ export default function StudentForm() {
             </CardContent>
           </Box>
         </Grid>
+        <FormDialog
+          show={isDialogOpen}
+          data={modalData}
+          handleChangeDialogStatus={handleOpenModal}
+          onAfterUpdate={getInstitutions}
+        />
       </Grid>
     </ThemeProvider>
   );

@@ -23,8 +23,9 @@ var upload = multer({ storage: storage }).single('file');
 
 router.get("/all", function (req, res, next) {
     var request = new sql.Request();
-    request.query("SELECT registrationNo,name, birthDate, email, courseCode, groupName, institution, avatarUrl, statusCode, status FROM STUDENTS " +
+    request.query("SELECT registrationNo,firstName, birthDate, email, courseCode, groupName, institutionName, avatarUrl, statusCode, status FROM USERS " +
         "LEFT JOIN COURSES ON course_Code = courseCode " +
+        "LEFT JOIN INSTITUTIONS ON institution_Id = institutionId " +
         "LEFT JOIN STATUS ON status_Code = statusCode ", function (err, data) {
             if (err) {
                 return console.error(err);
@@ -39,7 +40,10 @@ router.get("/filtered", function (req, res, next) {
     let parsedQs = querystring.parse(condition);
 
     request.query(
-        "SELECT * FROM STUDENTS WHERE " + commonFn.where(parsedQs),
+        "SELECT registrationNo,firstName, birthDate, email, courseCode, groupName, institution_Id, institutionName, avatarUrl, statusCode, status FROM USERS " +
+        "LEFT JOIN COURSES ON course_Code = courseCode " +
+        "LEFT JOIN INSTITUTIONS ON institution_Id = institutionId " +
+        "LEFT JOIN STATUS ON status_Code = statusCode  WHERE " + commonFn.where(parsedQs),
         function (err, data) {
             if (err) {
                 return console.error(err);
@@ -51,23 +55,27 @@ router.get("/filtered", function (req, res, next) {
 
 router.post("/add", function (req, res, next) {
     var request = new sql.Request();
-    const { regNo, name, dob, email, course, institution, avatarUrl, statusCode } = req.body;
+    const { regNo, name, dob, email, passCode, course, institutionId, userTypeId, avatarUrl, statusCode } = req.body;
     request.query(
-        "INSERT INTO STUDENTS " +
-        "(registrationNo, name, birthDate, email, course_Code, institution, avatarUrl, status_Code)" +
-        " VALUES('" +
+        "INSERT INTO USERS " +
+        "(userId, registrationNo, firstName, birthDate, course_Code, institution_Id, email, passCode, user_Type_Id, avatarUrl, status_Code)" +
+        " VALUES((SELECT ISNULL(MAX(userId), 0) + 1 FROM USERS),'" +
         regNo +
         "','" +
         name +
         "','" +
         dob +
         "','" +
+        course +
+        "'," +
+        institutionId +
+        ",'" +
         email +
         "','" +
-        course +
-        "','" +
-        institution +
-        "','" +
+        passCode +
+        "'," +
+        userTypeId +
+        ",'" +
         avatarUrl +
         "'," +
         statusCode +
@@ -87,10 +95,10 @@ router.post("/add", function (req, res, next) {
 
 router.post("/edit", function (req, res, next) {
     var request = new sql.Request();
-    const { regNo, name, dob, email, course, institution, avatarUrl, statusCode } = req.body;
+    const { regNo, name, dob, email, course, institutionId, avatarUrl, statusCode } = req.body;
     request.query(
-        "UPDATE STUDENTS SET" +
-        " name='" +
+        "UPDATE USERS SET" +
+        " firstName='" +
         name +
         "', birthDate='" +
         dob +
@@ -98,9 +106,9 @@ router.post("/edit", function (req, res, next) {
         email +
         "', course_Code='" +
         course +
-        "', institution='" +
-        institution +
-        "', avatarUrl='" +
+        "', institution_Id=" +
+        institutionId +
+        ", avatarUrl='" +
         avatarUrl +
         "', status_Code=" +
         statusCode +
@@ -138,7 +146,7 @@ router.delete('/remove', function (req, res, next) {
     const {  regNos } = req.body;
     var values = "('" + regNos.join("','") + "')";
     request
-        .query("DELETE FROM STUDENTS WHERE registrationNo IN " + values , function (
+        .query("DELETE FROM USERS WHERE registrationNo IN " + values , function (
             err,
             data,
         ) {
@@ -153,7 +161,7 @@ router.delete('/remove', function (req, res, next) {
 router.delete("/:registrationNo", function (req, res, next) {
     var request = new sql.Request();
     request.query(
-        "DELETE FROM STUDENTS WHERE registrationNo='" + req.params.registrationNo + "'",
+        "DELETE FROM USERS WHERE registrationNo='" + req.params.registrationNo + "'",
         function (err, data) {
             if (err) {
                 return console.error(err);

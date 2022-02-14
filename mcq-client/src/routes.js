@@ -23,28 +23,47 @@ import Course from "./pages/Course";
 import LoginStudent from "./pages/LoginStudent";
 import NotFound from "./pages/Page404";
 
-import { getUserName } from "./utils/Common";
-import PrivateRoute from "./utils/PrivateRoute";
+import { getUserName, getUserTypeId } from "./utils/Common";
+import { PrivateRouteUser, PrivateRouteStudent } from "./utils/PrivateRoute";
 // ----------------------------------------------------------------------
 import ScrollToTop from "./components/ScrollToTop";
 
 const AppWrapper = () => {
-  let isUserAuthenticated = !!getUserName() ? true : false;
+  let isUserAuthenticated, authenticatedUserType;
+  if (getUserName() != null) {
+    isUserAuthenticated = true;
+    authenticatedUserType = getUserTypeId() === 3 ? "student" : "user";
+  } else {
+    isUserAuthenticated = false;
+  }
+
   return useRoutes([
     {
       path: "/",
-      element: isUserAuthenticated ? (
-        <Navigate replace to="/dashboard" />
-      ) : (
-        <Navigate replace to="/login" />
-      ),
+      element:
+        getUserTypeId() === null ? (
+          <Navigate replace to="/login" />
+          ) : (
+            getUserTypeId()===3 ?
+          <Navigate replace to="/examPaper" />:
+          <Navigate replace to="/dashboard" />
+        ),
+    },
+    {
+      path: "/",
+      element:
+        isUserAuthenticated && authenticatedUserType === "st" ? (
+          <Navigate replace to="/dashboard" />
+        ) : (
+          <Navigate replace to="/login" />
+        ),
     },
     {
       path: "/",
       element: (
-        <PrivateRoute>
+        <PrivateRouteUser>
           <DashboardLayout />
-        </PrivateRoute>
+        </PrivateRouteUser>
       ),
       children: [
         { path: "dashboard", element: <DashboardApp /> },
@@ -61,16 +80,28 @@ const AppWrapper = () => {
     },
     {
       path: "/",
+      element: (
+        <PrivateRouteStudent>
+          <LogoOnlyLayout />
+        </PrivateRouteStudent>
+      ),
+      children: [
+        { path: "examPaper", element: <ExamPaper /> },
+        { path: "practiceExamList", element: <ExamPracticeList /> },
+        { path: "practiceExamPaper", element: <ExamPaperPractice /> },
+      ],
+    },
+    {
+      path: "/",
       element: <LogoOnlyLayout />,
       children: [
         { path: "login", element: <Login /> },
         { path: "studentLogin", element: <LoginStudent /> },
-        { path: "examPaper", element: <ExamPaper /> },
-        { path: "practiceExamList", element: <ExamPracticeList /> },
-        { path: "practiceExamPaper", element: <ExamPaperPractice /> },
         { path: "register", element: <Register /> },
         { path: "404", element: <NotFound /> },
-        { path: "*", element: <Navigate to="/404" /> },
+        // { path: "examPaper", element: <ExamPaper /> },
+        // { path: "practiceExamList", element: <ExamPracticeList /> },
+        // { path: "practiceExamPaper", element: <ExamPaperPractice /> },
       ],
     },
     { path: "*", element: <Navigate to="/404" replace /> },

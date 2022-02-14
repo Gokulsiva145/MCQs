@@ -57,7 +57,7 @@ export default function Student() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const getStudents = async () => {
-    const result = await fetch("http://localhost:5000/students/all");
+    const result = await fetch("http://localhost:5000/students/filtered?user_Type_Id=3");
     const record = await result.json();
     setSTUDENTLIST(record);
   };
@@ -183,7 +183,7 @@ export default function Student() {
                         birthDate,
                         email,
                         groupName,
-                        institution,
+                        institutionName,
                         avatarUrl,
                         status,
                       } = row;
@@ -224,7 +224,7 @@ export default function Student() {
                             {moment(birthDate).format("DD/MM/YYYY")}
                           </TableCell>
                           <TableCell align="left">{groupName}</TableCell>
-                          <TableCell align="left">{institution}</TableCell>
+                          <TableCell align="left">{institutionName}</TableCell>
                           <TableCell align="left">{email}</TableCell>
                           <TableCell align="left">
                             <Label

@@ -1,2 +1,0 @@
-ALTER TABLE [dbo].[ExamFor] ADD CONSTRAINT [
-go

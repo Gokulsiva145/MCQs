@@ -3,7 +3,7 @@ import androidFilled from "@iconify/icons-ant-design/android-filled";
 import bugFilled from "@iconify/icons-ant-design/bug-filled";
 import appleFilled from "@iconify/icons-ant-design/apple-filled";
 import windowsFilled from "@iconify/icons-ant-design/windows-filled";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 // material
 import { alpha, styled } from "@mui/material/styles";
 import { Button, Card, Typography, Grid, Container } from "@mui/material";
@@ -115,21 +115,21 @@ export default function PracticeExamResult({ data }) {
                 Result
               </Typography>
             </RootStyleStatus>
-          </Grid>          
+          </Grid>
         </Grid>
         <Grid container justifyContent="center">
-            <Button
-              variant="contained"
-              type="button"
-              component={RouterLink}
-              to={-1}
-              size="large"
-              color="secondary"
-              endIcon={<SendIcon />}
-            >
-              Goto List
-            </Button>
-          </Grid>
+          <Button
+            variant="contained"
+            type="button"
+            component={RouterLink}
+            to={-1}
+            size="large"
+            color="secondary"
+            endIcon={<SendIcon />}
+          >
+            Goto List
+          </Button>
+        </Grid>
       </Container>
     </Page>
   );

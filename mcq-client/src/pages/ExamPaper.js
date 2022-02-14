@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
 import { useTimer } from "react-timer-hook";
 import moment from "moment";
 import {
   Avatar,
-  AppBar,
   Box,
   Button,
   Container,
@@ -11,9 +12,7 @@ import {
   CssBaseline,
   FormControlLabel,
   FormGroup,
-  IconButton,
-  Menu,
-  MenuItem,
+  Grid,
   Radio,
   RadioGroup,
   Stack,
@@ -21,11 +20,11 @@ import {
   Typography,
   Toolbar,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useLocation, useNavigate } from "react-router-dom";
-import Slide from "@mui/material/Slide";
-import PropTypes from "prop-types";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
+import {
+  createTheme,
+  ThemeProvider,
+} from "@mui/material/styles";
+import {  useNavigate } from "react-router-dom";
 
 function MyTimer({ expiryTimestamp, onExpire, onTimerSubmit, examStatus }) {
   const {
@@ -74,46 +73,17 @@ function MyTimer({ expiryTimestamp, onExpire, onTimerSubmit, examStatus }) {
     </Container>
   );
 }
-
-function HideOnScroll(props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
-
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  );
-}
-
-HideOnScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-};
-
 const theme = createTheme();
 
-export default function ExamPaper(props) {
-  const location = useLocation();
+export default function ExamPaper() {
   const navigate = useNavigate();
-  const [auth] = useState(location.state.data);
+  const [auth] = useState(sessionStorage.getItem("studentData"));
   const [time] = useState(new Date());
-  const [anchorEl, setAnchorEl] = useState(null);
   const [currentExam, setCurrentExam] = useState([]);
   const [examStatus, setExamStatus] = useState("wait");
   const [questions, setQuestions] = useState([]);
 
   const inputSubmit = useRef(null);
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const getQuestionsforExam = async (examId) => {
     const result = await fetch(`http://localhost:5000/questions/${examId}`);
@@ -177,7 +147,7 @@ export default function ExamPaper(props) {
         const updateAnsIndex = myAns.findIndex(
           (item) => item.questionNo === key.split("_").pop()
         );
-        myAns[updateAnsIndex].ans=current.sort().join("[|]");
+        myAns[updateAnsIndex].ans = current.sort().join("[|]");
       } else {
         output[key] = value;
         myAns.push({
@@ -188,8 +158,8 @@ export default function ExamPaper(props) {
         });
       }
     });
-    
-    if(myAns.length===0){
+
+    if (myAns.length === 0) {
       myAns.push({
         examId: currentExam[0].examId,
         regNo: auth.registrationNo,
@@ -248,50 +218,6 @@ export default function ExamPaper(props) {
   };
   return (
     <ThemeProvider theme={theme}>
-      <HideOnScroll {...props}>
-        <AppBar color="" sx={{ p: 1 }}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} />
-            {!!auth && (
-              <div>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <Avatar
-                    alt={auth.name}
-                    src={auth.avatarUrl}
-                    sx={{ bgcolor: "secondary.main" }}
-                  />
-                </IconButton>
-
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>{auth.email}</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                </Menu>
-              </div>
-            )}
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
       <React.Fragment>
         <CssBaseline />
         <Toolbar sx={{ mt: 15 }}>
@@ -307,6 +233,19 @@ export default function ExamPaper(props) {
               <Typography variant="h4" align="center">
                 You Don't have an exam today
               </Typography>
+              <Grid container justifyContent="center">
+                <Button
+                  variant="contained"
+                  type="button"
+                  component={RouterLink}
+                  to="/practiceExamList"
+                  size="large"
+                  color="secondary"
+                  endIcon={<SendIcon />}
+                >
+                  Goto List
+                </Button>
+              </Grid>
             </Container>
           )}
         </Toolbar>
@@ -350,7 +289,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionA}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionA}
@@ -362,7 +300,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionB}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionB}
@@ -374,7 +311,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionC}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionC}
@@ -386,7 +322,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionD}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionD}
@@ -406,7 +341,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionA}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionA}
@@ -418,7 +352,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionB}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionB}
@@ -430,7 +363,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionC}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionC}
@@ -442,7 +374,6 @@ export default function ExamPaper(props) {
                               name={`ansForQues_${ques.questionNo}`}
                               color="primary"
                               value={ques.optionD}
-                              // onChange={handleChange}
                             />
                           }
                           label={ques.optionD}
